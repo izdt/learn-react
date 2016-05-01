@@ -1,2 +1,3 @@
 # learn-react
-learn react code project
+This is a simple demo to react.
+
