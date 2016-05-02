@@ -64,16 +64,14 @@ gulp.task('css',function(){
 
 gulp.task('lint',function(){
    return gulp.src(config.paths.js)
-    //.pipe(lint({config: 'eslint.config.json'}))
-    .pipe(eslint())
+    .pipe(eslint({config: 'eslint.config.json'}))
     .pipe(eslint.result(function (result) {
 	    console.log('ESLint result:' + result.filePath);
 	    console.log('# Messages: ' + result.messages.length);
 	    console.log('# Warnings: ' + result.warningCount);
 	    console.log('# Errors: ' + result.errorCount);
 	}))
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+    .pipe(eslint.format());
 });
 
 gulp.task('watch',function(){
