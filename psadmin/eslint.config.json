@@ -1,9 +1,12 @@
 {
     //"warnFileIgnored":true,
-    "ecmaFeatures":{
-        "jsx": true
+    "ecmaVersion": 6,
+    "ecmaFeatures": {
+        "jsx":true,
+        "experimentalObjectRestSpread": true
     },
     "env":{
+        "es6":true,
         "browser": true,
         "node": true,
         "jquery": true
