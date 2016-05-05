@@ -45538,11 +45538,14 @@ module.exports = About;
 var React = require('react');
 
 var AuthorList = React.createClass({displayName: "AuthorList",
+    propTypes:{
+      authors: React.PropTypes.array.isRequired  
+    },
     render: function(){
         var createAuthorRow = function(author){
            return (
                React.createElement("tr", {key: author.id}, 
-                React.createElement("td", null, " ", React.createElement("a", {href: "/authors/"+author.id}, author.id)), 
+                React.createElement("td", null, " ", React.createElement("a", {href: "/#authors/"+author.id}, author.id)), 
                 React.createElement("td", null, author.firstName, " ", author.LastName)
                )
            );  
