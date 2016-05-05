@@ -3,6 +3,7 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Home = require('./compontents/homePage');
 var About = require('./compontents/about/aboutPage');
+var Authors = require('./compontents/authors/authorPage')
 var Header = require('./compontents/common/header');
 
 (function(window){
@@ -11,6 +12,7 @@ var Header = require('./compontents/common/header');
        var Child;
        switch(this.props.route){
            case 'about':Child = About;break;
+           case 'authors':Child = Authors;break;
            default: Child = Home;
        }
        return (
