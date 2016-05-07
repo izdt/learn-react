@@ -50614,8 +50614,8 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 }).call(this,require('_process'))
 },{"./emptyFunction":208,"_process":24}],227:[function(require,module,exports){
-/* eslint-disable no-unused-vars */
 'use strict';
+/* eslint-disable no-unused-vars */
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
@@ -50627,7 +50627,51 @@ function toObject(val) {
 	return Object(val);
 }
 
-module.exports = Object.assign || function (target, source) {
+function shouldUseNative() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (e) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	var from;
 	var to = toObject(target);
 	var symbols;
@@ -50846,7 +50890,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./common/header":237,"jquery":22,"react":228}],235:[function(require,module,exports){
+},{"./common/header":238,"jquery":22,"react":228}],235:[function(require,module,exports){
 "use strict";
 var React = require('react');
 
@@ -50886,7 +50930,9 @@ module.exports = AuthorList;
 
 var React = require('react');
 var AuthorApi = require('../../api/authorApi');
-var AuthorList = require('./authorList')
+var AuthorList = require('./authorList');
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 
 var Authors = React.createClass({displayName: "Authors",
     getInitialState: function() {
@@ -50903,6 +50949,7 @@ var Authors = React.createClass({displayName: "Authors",
         return (
             React.createElement("div", null, 
                 React.createElement("h1", null, "Authors"), 
+                React.createElement(Link, {to: "author", className: "btn btn-default"}, "Add Author"), 
                 React.createElement(AuthorList, {authors: this.state.authors})
             )
         );
@@ -50911,7 +50958,20 @@ var Authors = React.createClass({displayName: "Authors",
 
 module.exports = Authors;
 
-},{"../../api/authorApi":231,"./authorList":235,"react":228}],237:[function(require,module,exports){
+},{"../../api/authorApi":231,"./authorList":235,"react":228,"react-router":56}],237:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
+    render: function(){
+        return (
+          React.createElement("h1", null, "Author")  
+        );
+    }   
+});
+
+module.exports = ManageAuthorPage;
+},{"react":228}],238:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -50945,7 +51005,7 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"react":228,"react-router":56}],238:[function(require,module,exports){
+},{"react":228,"react-router":56}],239:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -50985,7 +51045,7 @@ Home.propTypes = {
 export default Home;
 */
 
-},{"react":228,"react-router":56}],239:[function(require,module,exports){
+},{"react":228,"react-router":56}],240:[function(require,module,exports){
 "use strict";
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -50994,8 +51054,7 @@ var Router = ReactRouter.Router;
 var routes = require('./routes');
 
 ReactDOM.render(React.createElement(Router, null, routes), document.getElementById('app')) 
-
-},{"./routes":240,"react":228,"react-dom":26,"react-router":56}],240:[function(require,module,exports){
+},{"./routes":241,"react":228,"react-dom":26,"react-router":56}],241:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -51008,10 +51067,11 @@ var routes = (
   React.createElement(Route, {path: "/", component: require('./compontents/app')}, 
     React.createElement(IndexRoute, {component: require('./compontents/homePage')}), 
     React.createElement(Route, {path: "authors", component: require('./compontents/authors/authorPage')}), 
+    React.createElement(Route, {path: "author", component: require('./compontents/authors/manageAuthorPage')}), 
     React.createElement(Route, {path: "about", component: require('./compontents/about/aboutPage')})
   )
 );
 
 module.exports = routes;
 
-},{"./compontents/about/aboutPage":233,"./compontents/app":234,"./compontents/authors/authorPage":236,"./compontents/homePage":238,"react":228,"react-router":56}]},{},[239]);
+},{"./compontents/about/aboutPage":233,"./compontents/app":234,"./compontents/authors/authorPage":236,"./compontents/authors/manageAuthorPage":237,"./compontents/homePage":239,"react":228,"react-router":56}]},{},[240]);
