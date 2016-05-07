@@ -50890,7 +50890,30 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./common/header":238,"jquery":22,"react":228}],235:[function(require,module,exports){
+},{"./common/header":239,"jquery":22,"react":228}],235:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+var AuthorForm = React.createClass({displayName: "AuthorForm",
+    render: function(){
+        return (
+            React.createElement("form", null, 
+                React.createElement("h1", null, "Manage Author"), 
+                React.createElement("label", {htmlFor: "firstName"}, "First Name"), 
+                React.createElement("input", {type: "text", name: "firstName", className: "form-control", placeholder: "first name", ref: "firstName", 
+                onChange: this.props.onChange, value: this.props.author.firstName}), 
+                React.createElement("br", null), 
+                React.createElement("label", {htmlFor: "lastName"}, "Last Name"), 
+                React.createElement("input", {type: "text", name: "lastName", className: "form-control", placeholder: "last name", ref: "lastName", 
+                onChange: this.props.onChange, value: this.props.author.lastName}), 
+                React.createElement("input", {type: "submit", className: "btn btn-default", value: "Save"})
+            )
+        );
+    }
+});
+module.exports = AuthorForm;
+
+},{"react":228}],236:[function(require,module,exports){
 "use strict";
 var React = require('react');
 
@@ -50925,7 +50948,7 @@ var AuthorList = React.createClass({displayName: "AuthorList",
 
 module.exports = AuthorList;
 
-},{"react":228}],236:[function(require,module,exports){
+},{"react":228}],237:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -50958,20 +50981,33 @@ var Authors = React.createClass({displayName: "Authors",
 
 module.exports = Authors;
 
-},{"../../api/authorApi":231,"./authorList":235,"react":228,"react-router":56}],237:[function(require,module,exports){
+},{"../../api/authorApi":231,"./authorList":236,"react":228,"react-router":56}],238:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
+var AuthorForm = require('./authorForm');
 var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
+    getInitialState:function(){
+      return {
+          author: {id:'',firstName:'',lastName:''}
+      };  
+    },
+    setAuthorState: function(){
+       var field = event.target.name;
+       var value = event.target.value;
+       this.state.author[filed] =value;
+       return this.setAuthorState({author:this.state.author});  
+    },
     render: function(){
         return (
-          React.createElement("h1", null, "Author")  
+          React.createElement(AuthorForm, {author: this.state.author, 
+          onChange: this.setAuthorState})  
         );
     }   
 });
 
 module.exports = ManageAuthorPage;
-},{"react":228}],238:[function(require,module,exports){
+},{"./authorForm":235,"react":228}],239:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -51005,7 +51041,7 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"react":228,"react-router":56}],239:[function(require,module,exports){
+},{"react":228,"react-router":56}],240:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -51045,7 +51081,7 @@ Home.propTypes = {
 export default Home;
 */
 
-},{"react":228,"react-router":56}],240:[function(require,module,exports){
+},{"react":228,"react-router":56}],241:[function(require,module,exports){
 "use strict";
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -51054,7 +51090,7 @@ var Router = ReactRouter.Router;
 var routes = require('./routes');
 
 ReactDOM.render(React.createElement(Router, null, routes), document.getElementById('app')) 
-},{"./routes":241,"react":228,"react-dom":26,"react-router":56}],241:[function(require,module,exports){
+},{"./routes":242,"react":228,"react-dom":26,"react-router":56}],242:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -51074,4 +51110,4 @@ var routes = (
 
 module.exports = routes;
 
-},{"./compontents/about/aboutPage":233,"./compontents/app":234,"./compontents/authors/authorPage":236,"./compontents/authors/manageAuthorPage":237,"./compontents/homePage":239,"react":228,"react-router":56}]},{},[240]);
+},{"./compontents/about/aboutPage":233,"./compontents/app":234,"./compontents/authors/authorPage":237,"./compontents/authors/manageAuthorPage":238,"./compontents/homePage":240,"react":228,"react-router":56}]},{},[241]);
