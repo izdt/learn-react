@@ -50614,8 +50614,8 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 }).call(this,require('_process'))
 },{"./emptyFunction":208,"_process":24}],227:[function(require,module,exports){
-'use strict';
 /* eslint-disable no-unused-vars */
+'use strict';
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 
@@ -50627,51 +50627,7 @@ function toObject(val) {
 	return Object(val);
 }
 
-function shouldUseNative() {
-	try {
-		if (!Object.assign) {
-			return false;
-		}
-
-		// Detect buggy property enumeration order in older V8 versions.
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line
-		test1[5] = 'de';
-		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test2 = {};
-		for (var i = 0; i < 10; i++) {
-			test2['_' + String.fromCharCode(i)] = i;
-		}
-		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-			return test2[n];
-		});
-		if (order2.join('') !== '0123456789') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test3 = {};
-		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-			test3[letter] = letter;
-		});
-		if (Object.keys(Object.assign({}, test3)).join('') !==
-				'abcdefghijklmnopqrst') {
-			return false;
-		}
-
-		return true;
-	} catch (e) {
-		// We don't expect any of the above to throw, but better to be safe.
-		return false;
-	}
-}
-
-module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+module.exports = Object.assign || function (target, source) {
 	var from;
 	var to = toObject(target);
 	var symbols;
@@ -50894,26 +50850,28 @@ module.exports = App;
 "use strict";
 
 var React = require('react');
+var Input = require('../common/textInput');
+
+
 var AuthorForm = React.createClass({displayName: "AuthorForm",
+
     render: function(){
         return (
             React.createElement("form", null, 
                 React.createElement("h1", null, "Manage Author"), 
-                React.createElement("label", {htmlFor: "firstName"}, "First Name"), 
-                React.createElement("input", {type: "text", name: "firstName", className: "form-control", placeholder: "first name", ref: "firstName", 
-                onChange: this.props.onChange, value: this.props.author.firstName}), 
+                React.createElement(Input, {name: "firstName", label: "First Name", 
+                value: this.props.author.firstName, onChange: this.props.onChange}), 
                 React.createElement("br", null), 
-                React.createElement("label", {htmlFor: "lastName"}, "Last Name"), 
-                React.createElement("input", {type: "text", name: "lastName", className: "form-control", placeholder: "last name", ref: "lastName", 
-                onChange: this.props.onChange, value: this.props.author.lastName}), 
-                React.createElement("input", {type: "submit", className: "btn btn-default", value: "Save"})
+                React.createElement(Input, {name: "lastName", label: "Last Name", 
+                value: this.props.author.lastName, onChange: this.props.onChange}), 
+                React.createElement("input", {type: "submit", className: "btn btn-default", value: "Save", onClick: this.props.onSave})
             )
         );
     }
 });
 module.exports = AuthorForm;
 
-},{"react":228}],236:[function(require,module,exports){
+},{"../common/textInput":240,"react":228}],236:[function(require,module,exports){
 "use strict";
 var React = require('react');
 
@@ -50986,28 +50944,38 @@ module.exports = Authors;
 
 var React = require('react');
 var AuthorForm = require('./authorForm');
+var AuthorApi = require('../../api/AuthorApi')
+
 var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
     getInitialState:function(){
       return {
           author: {id:'',firstName:'',lastName:''}
       };  
     },
-    setAuthorState: function(){
+    setAuthorState: function(event){
+       //console.log(event.target.name);
        var field = event.target.name;
        var value = event.target.value;
-       this.state.author[filed] =value;
-       return this.setAuthorState({author:this.state.author});  
+       this.state.author[field] = value;
+       return this.setState({author:this.state.author});  
+    },
+    saveAuthor: function(event){
+        console.log(event);
+        event.preventDefault();
+        AuthorApi.saveAuthor(this.state.author);
     },
     render: function(){
         return (
           React.createElement(AuthorForm, {author: this.state.author, 
-          onChange: this.setAuthorState})  
+          onChange: this.setAuthorState, 
+          onSave: this.saveAuthor})  
         );
     }   
 });
 
 module.exports = ManageAuthorPage;
-},{"./authorForm":235,"react":228}],239:[function(require,module,exports){
+
+},{"../../api/AuthorApi":231,"./authorForm":235,"react":228}],239:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -51042,6 +51010,38 @@ var Header = React.createClass({displayName: "Header",
 module.exports = Header;
 
 },{"react":228,"react-router":56}],240:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+var Input = React.createClass({displayName: "Input",
+    propTypes:{
+        name: React.PropTypes.string.isRequired,
+        label: React.PropTypes.string.isRequired,
+        onChange: React.PropTypes.func.isRequired,
+        placeholder: React.PropTypes.string,
+        value: React.PropTypes.string,
+        error: React.PropTypes.string
+    },
+    render: function(){
+        var wrapperClass = 'form-group';
+        if(this.props.error && this.props.error.length >0){
+            wrapperClass += " " + 'has-error';
+        }
+        return (
+            React.createElement("div", {className: wrapperClass}, 
+                React.createElement("label", {htmlFor: "{this.props.name}"}, this.props.label), 
+                React.createElement("div", {className: "field"}, 
+                    React.createElement("input", {type: "text", name: this.props.name, className: "form-control", placeholder: this.props.placeholder, ref: this.props.name, 
+                onChange: this.props.onChange, value: this.props.value}), 
+                    React.createElement("div", {className: "input"}, this.props.error)
+                )
+            )
+        );
+    }
+});
+module.exports = Input;
+
+},{"react":228}],241:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -51081,7 +51081,7 @@ Home.propTypes = {
 export default Home;
 */
 
-},{"react":228,"react-router":56}],241:[function(require,module,exports){
+},{"react":228,"react-router":56}],242:[function(require,module,exports){
 "use strict";
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -51090,7 +51090,8 @@ var Router = ReactRouter.Router;
 var routes = require('./routes');
 
 ReactDOM.render(React.createElement(Router, null, routes), document.getElementById('app')) 
-},{"./routes":242,"react":228,"react-dom":26,"react-router":56}],242:[function(require,module,exports){
+
+},{"./routes":243,"react":228,"react-dom":26,"react-router":56}],243:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -51110,4 +51111,4 @@ var routes = (
 
 module.exports = routes;
 
-},{"./compontents/about/aboutPage":233,"./compontents/app":234,"./compontents/authors/authorPage":237,"./compontents/authors/manageAuthorPage":238,"./compontents/homePage":240,"react":228,"react-router":56}]},{},[241]);
+},{"./compontents/about/aboutPage":233,"./compontents/app":234,"./compontents/authors/authorPage":237,"./compontents/authors/manageAuthorPage":238,"./compontents/homePage":241,"react":228,"react-router":56}]},{},[242]);
