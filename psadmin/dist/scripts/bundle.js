@@ -50943,8 +50943,10 @@ module.exports = Authors;
 "use strict";
 
 var React = require('react');
+var ReactRouter = require('react-router');
 var AuthorForm = require('./authorForm');
 var AuthorApi = require('../../api/AuthorApi')
+var browserHistory = ReactRouter.browserHistory;
 
 var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
     getInitialState:function(){
@@ -50960,9 +50962,10 @@ var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
        return this.setState({author:this.state.author});  
     },
     saveAuthor: function(event){
-        console.log(event);
+        //console.log(event);
         event.preventDefault();
         AuthorApi.saveAuthor(this.state.author);
+        browserHistory.push('/authors')   
     },
     render: function(){
         return (
@@ -50975,7 +50978,7 @@ var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
 
 module.exports = ManageAuthorPage;
 
-},{"../../api/AuthorApi":231,"./authorForm":235,"react":228}],239:[function(require,module,exports){
+},{"../../api/AuthorApi":231,"./authorForm":235,"react":228,"react-router":56}],239:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -51087,9 +51090,11 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
+var browserHistory = ReactRouter.browserHistory;
 var routes = require('./routes');
 
-ReactDOM.render(React.createElement(Router, null, routes), document.getElementById('app')) 
+
+ReactDOM.render(React.createElement(Router, {history: browserHistory}, routes), document.getElementById('app')) 
 
 },{"./routes":243,"react":228,"react-dom":26,"react-router":56}],243:[function(require,module,exports){
 "use strict";

@@ -1,8 +1,10 @@
 "use strict";
 
 var React = require('react');
+var ReactRouter = require('react-router');
 var AuthorForm = require('./authorForm');
 var AuthorApi = require('../../api/AuthorApi')
+var browserHistory = ReactRouter.browserHistory;
 
 var ManageAuthorPage = React.createClass({
     getInitialState:function(){
@@ -18,9 +20,10 @@ var ManageAuthorPage = React.createClass({
        return this.setState({author:this.state.author});  
     },
     saveAuthor: function(event){
-        console.log(event);
+        //console.log(event);
         event.preventDefault();
         AuthorApi.saveAuthor(this.state.author);
+        browserHistory.push('/authors')   
     },
     render: function(){
         return (
