@@ -5,6 +5,7 @@ var ReactRouter = require('react-router');
 var AuthorForm = require('./authorForm');
 var AuthorApi = require('../../api/AuthorApi')
 var browserHistory = ReactRouter.browserHistory;
+var toastr = require('toastr');
 
 var ManageAuthorPage = React.createClass({
     getInitialState:function(){
@@ -23,7 +24,8 @@ var ManageAuthorPage = React.createClass({
         //console.log(event);
         event.preventDefault();
         AuthorApi.saveAuthor(this.state.author);
-        browserHistory.push('/authors')   
+        toastr.success('Author saved.');
+        browserHistory.push('/authors') ;  
     },
     render: function(){
         return (
