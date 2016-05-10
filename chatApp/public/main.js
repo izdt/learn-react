@@ -44,23 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(1);
-	module.exports = __webpack_require__(2);
+	(function webpackMissingModule() { throw new Error("Cannot find module \"./src/main.js\""); }());
 
-
-/***/ },
-/* 1 */
-/***/ function(module, exports) {
-
-	module.exports = 'hi there from module 1';
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var message = __webpack_require__(1);
-
-	document.write(`This is formatted with ES6 ${ message }`);
 
 /***/ }
 /******/ ]);
