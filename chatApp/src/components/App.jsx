@@ -16,7 +16,8 @@ class App extends Component {
             <div>{message}</div>     
            );
         });
-        return (
+        console.log(messageNode);
+        return ( 
             <div>
                  {messageNode}
             </div>

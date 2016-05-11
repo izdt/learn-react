@@ -51,11 +51,7 @@
 /* 1 */
 /***/ function(module, exports) {
 
-	import React, { Component } from 'react';
-	import ReactDOM from 'react-dom';
-	import App from './components/App.jsx';
-
-	ReactDOM.render(React.createElement(App, null), document.getElementById('container'));
+	eval("import React, { Component } from 'react';\nimport ReactDOM from 'react-dom';\nimport App from './components/App.jsx';\n\nReactDOM.render(React.createElement(App, null), document.getElementById('container'));//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zcmMvbWFpbi5qcz8zNDc5Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLE9BQU8sS0FBUCxJQUFlLFNBQWYsUUFBK0IsT0FBL0I7QUFDQSxPQUFPLFFBQVAsTUFBcUIsV0FBckI7QUFDQSxPQUFPLEdBQVAsTUFBZ0Isc0JBQWhCOztBQUVBLFNBQVMsTUFBVCxDQUFnQixvQkFBQyxHQUFELE9BQWhCLEVBQXdCLFNBQVMsY0FBVCxDQUF3QixXQUF4QixDQUF4QiIsImZpbGUiOiIxLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7Q29tcG9uZW50fSBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCBSZWFjdERPTSBmcm9tICdyZWFjdC1kb20nO1xyXG5pbXBvcnQgQXBwIGZyb20gJy4vY29tcG9uZW50cy9BcHAuanN4JztcclxuXHJcblJlYWN0RE9NLnJlbmRlcig8QXBwIC8+LGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdjb250YWluZXInKSk7XHJcblxuXG5cbi8qKiBXRUJQQUNLIEZPT1RFUiAqKlxuICoqIC4vc3JjL21haW4uanNcbiAqKi8iXSwic291cmNlUm9vdCI6IiJ9");
 
 /***/ }
 /******/ ]);
