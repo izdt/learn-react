@@ -44,8 +44,18 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	(function webpackMissingModule() { throw new Error("Cannot find module \"./src/main.js\""); }());
+	module.exports = __webpack_require__(1);
 
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	import React, { Component } from 'react';
+	import ReactDOM from 'react-dom';
+	import App from './components/App.jsx';
+
+	ReactDOM.render(React.createElement(App, null), document.getElementById('container'));
 
 /***/ }
 /******/ ]);
