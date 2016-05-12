@@ -11,14 +11,15 @@ class App extends Component {
         }
     }
     render() {
+        //debugger;
         var messageNode = this.state.messages.map((message)=>{
            return (
             <div>{message}</div>     
            );
         });
-        console.log(messageNode);
+        //console.log(messageNode);
         return ( 
-            <div>
+            <div style={{color:'green'}}>
                  {messageNode}
             </div>
         );
