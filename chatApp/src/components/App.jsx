@@ -19,7 +19,7 @@ class App extends Component {
         });
         //console.log(messageNode);
         return ( 
-            <div style={{color:'green'}}>
+            <div>
                  {messageNode}
             </div>
         );
