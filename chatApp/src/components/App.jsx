@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import MessageList from './MessageList.jsx';
-import {cyan500} from 'material-ui/styles/colors';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AppBar from 'material-ui/AppBar';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-
+import {cyan500} from 'material-ui/styles/colors';
+import AppBar from 'material-ui/AppBar';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -24,15 +22,15 @@ class App extends Component {
         
     render() {
         return (
-            <div>
-                <MuiThemeProvider muiTheme={muiTheme}>
+            <MuiThemeProvider muiTheme={muiTheme}>
+                <div>
                     <AppBar
-                        title="Title"
+                        title="Awesome chat app"
                         iconClassNameRight="muidocs-icon-navigation-expand-more"
                     />
-                </MuiThemeProvider>
-                <MessageList />
-            </div>
+                    <MessageList />
+                </div>
+            </MuiThemeProvider>
         );
     }
 }
