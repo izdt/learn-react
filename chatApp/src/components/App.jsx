@@ -19,7 +19,6 @@ const muiTheme = getMuiTheme({
 class App extends Component {
     constructor(){
         super();
-        
     }
         
     render() {
@@ -27,8 +26,9 @@ class App extends Component {
             <MuiThemeProvider muiTheme={muiTheme}>
                 <div>
                     <AppBar
-                            title="Awesome chat app"
+                            title="Awesome Chat App"
                             iconClassNameRight="muidocs-icon-navigation-expand-more"
+                            style={{backgroundColor: '#2196F3'}}
                         />
                     <div style={{
                         display: 'flex',

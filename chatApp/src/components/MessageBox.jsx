@@ -17,7 +17,7 @@ class MessageBox extends Component {
                     borderColor: '#D0D0D0',
                     resize: 'none',
                     minHeight: 50,
-                    color: '#555',
+                    color: '#2196F3',
                     fontSize: 16,
                     border: 'none',
                     outline: 'none'
