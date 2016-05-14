@@ -12,7 +12,7 @@ const muiTheme = getMuiTheme({
     textColor: blue500,
   },
   appBar: {
-    height: 50,
+    height: 50
   },
 });
 

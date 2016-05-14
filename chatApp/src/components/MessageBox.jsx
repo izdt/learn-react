@@ -18,10 +18,10 @@ class MessageBox extends Component {
                     resize: 'none',
                     minHeight: 50,
                     color: '#555',
-                    fontSize: 15,
+                    fontSize: 16,
                     border: 'none',
                     outline: 'none'
-                }}/>
+                }} placeholder="Input your message here"/>
             </Card>
         );
     }

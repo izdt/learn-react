@@ -8,8 +8,10 @@ class MessageList extends Component {
         super(props);
         this.state = {
             messages:[
-                'hi there how are you?',
-                'I am fine, and you?'
+                'Hi there how are you?',
+                'I am fine, and you?',
+                'Hello world',
+                'We are chating'
             ]
         }
     }
