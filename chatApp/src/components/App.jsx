@@ -5,6 +5,7 @@ import {blue500} from 'material-ui/styles/colors';
 import AppBar from 'material-ui/AppBar';
 import MessageList from './MessageList.jsx';
 import ChannelList from './ChannelList.jsx';
+import MessageBox from './MessageBox.jsx';
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -39,6 +40,7 @@ class App extends Component {
                         <ChannelList />
                         <MessageList />
                     </div>
+                    <MessageBox />
                 </div>
             </MuiThemeProvider>
         );
