@@ -1,8 +1,8 @@
 $color: blue;
 $zero: 0;
-
+$bodyFont: "Helvetica,Menlo";
 *{
-    margin: $zero;
+    margin: $zero; font-family: $bodyFont;
 }
 
 body{

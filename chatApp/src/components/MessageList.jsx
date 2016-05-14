@@ -20,7 +20,7 @@ class MessageList extends Component {
             ); 
         });
         return (
-            <Card>
+            <Card style={{flexGrow: 2, marginLeft:30}}>
                 <List>{messageNodes}</List>
             </Card>
         );
