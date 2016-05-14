@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Message from './Message.jsx';
-import {Card,List}  from 'material-ui';
+import Card from 'material-ui/Card';
+import List from 'material-ui/List';
 
 class MessageList extends Component {
     constructor(props){
