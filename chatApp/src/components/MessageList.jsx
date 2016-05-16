@@ -2,19 +2,23 @@ import React, {Component} from 'react';
 import Message from './Message.jsx';
 import Card from 'material-ui/Card';
 import List from 'material-ui/List';
+import Firebase from 'firebase';
+import _ from 'lodash';
 
 
 class MessageList extends Component {
     constructor(props){
         super(props);
         this.state = {
-            messages:[
-                'Hi there how are you?',
-                'I am fine, and you?',
-                'Hello world',
-                'We are chating'
-            ]
-        }
+            messages:[]
+        };
+        this.firebaseRef = new Firebase('https://chatappio.firebaseio.com/messages');
+        this.firebaseRef.once("value",(dataSnapshot)=>{
+            var messages = dataSnapshot.val();
+            this.setState({
+                messages:messages
+            });
+        });
     }
     render() {
        var messageNodes = this.state.messages.map((message)=>{
