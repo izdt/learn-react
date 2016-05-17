@@ -31,7 +31,7 @@ class MessageList extends Component {
     render() {
        var messageNodes = this.state.messages.map((message)=>{
             return (
-                <Message message={message}/>
+                <Message key={message.key} message={message}/>
             ); 
         });
         return (

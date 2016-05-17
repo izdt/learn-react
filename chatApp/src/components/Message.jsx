@@ -9,7 +9,7 @@ class Message extends Component {
     }
     render() {
         return (
-            <ListItem
+            <ListItem 
                 leftAvatar={<Avatar src={this.props.message.avatar}/>}
             >
                 {this.props.message.message}

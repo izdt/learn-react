@@ -23,7 +23,10 @@ class MessageBox extends Component {
             evt.preventDefault();
             
             this.firebaseRef.push({
-                message:this.state.message
+                message:this.state.message,
+                date: Date(),
+                sender: 'chatApp',
+                avatar: 'https://avatars0.githubusercontent.com/u/4001992?v=3&u=9f76a26691adb57dcf0b28015282dbd92f14c1d3&s=140'
             });
             
             this.setState({
