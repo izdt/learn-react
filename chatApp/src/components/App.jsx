@@ -29,6 +29,7 @@ class App extends Component {
                             title="Awesome Chat App"
                             iconClassNameRight="muidocs-icon-navigation-expand-more"
                             style={{backgroundColor: '#2196F3'}}
+                            titleStyle={{fontWeight:100}}
                         />
                     <div style={{
                         display: 'flex',
