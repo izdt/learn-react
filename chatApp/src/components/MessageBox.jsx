@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Card from 'material-ui/Card';
 import trim from 'trim';
+import Firebase from 'firebase';
 
 class MessageBox extends Component {
     constructor(props){
@@ -8,6 +9,7 @@ class MessageBox extends Component {
         this.state = {
             message: ''
         }
+        this.firebaseRef = new Firebase('https://chatappio.firebaseio.com/messages');
     }
     
     onChange(evt){
@@ -19,10 +21,16 @@ class MessageBox extends Component {
     onKeyUp(evt){
         if(evt.keyCode===13 && trim(evt.target.value) != ''){
             evt.preventDefault();
+            
+            this.firebaseRef.push({
+                message:this.state.message
+            });
+            
             this.setState({
                 message:''
             });
-            console.log('Sent a new message: '+evt.target.value);
+            
+            //console.log('Sent a new message: '+evt.target.value);
         } 
     }
     

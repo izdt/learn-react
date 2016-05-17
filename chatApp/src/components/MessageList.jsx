@@ -13,7 +13,7 @@ class MessageList extends Component {
             messages:[]
         };
         this.firebaseRef = new Firebase('https://chatappio.firebaseio.com/messages');
-        this.firebaseRef.once("value",(dataSnapshot)=>{
+        this.firebaseRef.on("value",(dataSnapshot)=>{
             var messagesVal = dataSnapshot.val();
             var messages = _(messagesVal)
             .keys()
