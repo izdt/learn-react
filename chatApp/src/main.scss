@@ -1,8 +1,9 @@
 $color: blue;
 $zero: 0;
-$bodyFont: "Helvetica,Menlo";
+$bodyFont: "HelveticaNeue-Light,Helvetica Neue Light,Helvetica Neue,Helvetica,Menlo";
+$bodyFontWidth:300;
 *{
-    margin: $zero; font-family: $bodyFont;
+    margin: $zero; font-family: $bodyFont; font-weight: $bodyFontWidth;
 }
 
 body{
