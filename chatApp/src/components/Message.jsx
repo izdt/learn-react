@@ -11,7 +11,7 @@ class Message extends Component {
         return (
             <ListItem 
                 leftAvatar={<Avatar src={this.props.message.avatar}/>}
-                style={{fontWeight:300}}
+                style={{fontWeight:300,color:'##2196F3'}}
             >
                 {this.props.message.message}
             </ListItem>

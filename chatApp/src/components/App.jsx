@@ -6,6 +6,9 @@ import AppBar from 'material-ui/AppBar';
 import MessageList from './MessageList.jsx';
 import ChannelList from './ChannelList.jsx';
 import MessageBox from './MessageBox.jsx';
+import connectToStores from 'alt/utils/connectToStores';
+import ChatStore from '../stores/ChatStore';
+
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -16,10 +19,13 @@ const muiTheme = getMuiTheme({
   },
 });
 
+@connectToStores
 class App extends Component {
     constructor(){
         super();
     }
+    
+    
         
     render() {
         return (
