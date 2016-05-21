@@ -7,7 +7,7 @@ var ActionTypes = require('../constants/actionTypes');
 var AuthorActions = {
     createAuthor: function(author){
         var newAuthor = AuthorApi.saveAuthor(author);
-        Dispatcher.dipatch({
+        Dispatcher.dispatch({
             actionType: ActionTypes.CREATE_AUTHOR,
             author:newAuthor
         });    
