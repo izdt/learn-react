@@ -51870,7 +51870,27 @@ var AuthorActions = {
 
 module.exports = AuthorActions;
 
-},{"../api/authorApi":238,"../constants/actionTypes":249,"../dispatcher/appDispatcher":250}],238:[function(require,module,exports){
+},{"../api/authorApi":239,"../constants/actionTypes":250,"../dispatcher/appDispatcher":251}],238:[function(require,module,exports){
+"use strict";
+
+var Dispatcher = require('../dispatcher/appDispatcher');
+var ActionTypes = require('../constants/actionTypes');
+var AuthorApi = require('../api/authorApi');
+
+var InitializeActions = {
+    initApp: function(){
+        Dispatcher.dispatch({
+            actionType: ActionTypes.INITIALIZE,
+            initialData:{
+                authors: AuthorApi.getAllAuthors()
+            }
+        });
+    }
+};
+
+module.exports = InitializeActions;
+
+},{"../api/authorApi":239,"../constants/actionTypes":250,"../dispatcher/appDispatcher":251}],239:[function(require,module,exports){
 "use strict";
 //This file is mocking a web API by hitting hard coded data.
 var authors = require('./authorData').authors;
@@ -51912,7 +51932,7 @@ _.remove(authors, { id: id});
 };
 module.exports = AuthorApi;
 
-},{"./authorData":239,"lodash":27}],239:[function(require,module,exports){
+},{"./authorData":240,"lodash":27}],240:[function(require,module,exports){
 
 module.exports = {
 authors:
@@ -51935,7 +51955,7 @@ authors:
     ]
 };
 
-},{}],240:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -51964,7 +51984,7 @@ var About = React.createClass({displayName: "About",
 
 module.exports = About;
 
-},{"react":233}],241:[function(require,module,exports){
+},{"react":233}],242:[function(require,module,exports){
 //"use strict";
 var React = require('react');
 var Header = require('./common/header');
@@ -51985,7 +52005,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./common/header":246,"jquery":26,"react":233}],242:[function(require,module,exports){
+},{"./common/header":247,"jquery":26,"react":233}],243:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -52013,7 +52033,7 @@ var AuthorForm = React.createClass({displayName: "AuthorForm",
 });
 module.exports = AuthorForm;
 
-},{"../common/textInput":247,"react":233}],243:[function(require,module,exports){
+},{"../common/textInput":248,"react":233}],244:[function(require,module,exports){
 "use strict";
 var React = require('react');
 
@@ -52048,7 +52068,7 @@ var AuthorList = React.createClass({displayName: "AuthorList",
 
 module.exports = AuthorList;
 
-},{"react":233}],244:[function(require,module,exports){
+},{"react":233}],245:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -52077,7 +52097,7 @@ var Authors = React.createClass({displayName: "Authors",
 
 module.exports = Authors;
 
-},{"../../actions/authorActions":237,"../../stores/authorStore":253,"./authorList":243,"react":233,"react-router":61}],245:[function(require,module,exports){
+},{"../../actions/authorActions":237,"../../stores/authorStore":254,"./authorList":244,"react":233,"react-router":61}],246:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -52138,7 +52158,7 @@ var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
 
 module.exports = ManageAuthorPage;
 
-},{"../../actions/authorActions":237,"../../stores/authorStore":253,"./authorForm":242,"react":233,"react-router":61,"toastr":235}],246:[function(require,module,exports){
+},{"../../actions/authorActions":237,"../../stores/authorStore":254,"./authorForm":243,"react":233,"react-router":61,"toastr":235}],247:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -52172,7 +52192,7 @@ var Header = React.createClass({displayName: "Header",
 
 module.exports = Header;
 
-},{"react":233,"react-router":61}],247:[function(require,module,exports){
+},{"react":233,"react-router":61}],248:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -52204,7 +52224,7 @@ var Input = React.createClass({displayName: "Input",
 });
 module.exports = Input;
 
-},{"react":233}],248:[function(require,module,exports){
+},{"react":233}],249:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -52244,18 +52264,19 @@ Home.propTypes = {
 export default Home;
 */
 
-},{"react":233,"react-router":61}],249:[function(require,module,exports){
+},{"react":233,"react-router":61}],250:[function(require,module,exports){
 "use strict";
 
 module.exports = {
+    INITIALIZE:'INITIALIZE',    
     CREATE_AUTHOR:'CREATE_AUTHOR'
 };
 
-},{}],250:[function(require,module,exports){
+},{}],251:[function(require,module,exports){
 var Dispatcher = require('flux').Dispatcher;
 module.exports = new Dispatcher();
 
-},{"flux":6}],251:[function(require,module,exports){
+},{"flux":6}],252:[function(require,module,exports){
 "use strict";
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -52263,11 +52284,13 @@ var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var browserHistory = ReactRouter.browserHistory;
 var routes = require('./routes');
+var InitializeActions = require('./actions/initializeActions');
 
+InitializeActions.initApp();
 
 ReactDOM.render(React.createElement(Router, {history: browserHistory}, routes), document.getElementById('app')) 
 
-},{"./routes":252,"react":233,"react-dom":31,"react-router":61}],252:[function(require,module,exports){
+},{"./actions/initializeActions":238,"./routes":253,"react":233,"react-dom":31,"react-router":61}],253:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -52287,7 +52310,7 @@ var routes = (
 
 module.exports = routes;
 
-},{"./compontents/about/aboutPage":240,"./compontents/app":241,"./compontents/authors/authorPage":244,"./compontents/authors/manageAuthorPage":245,"./compontents/homePage":248,"react":233,"react-router":61}],253:[function(require,module,exports){
+},{"./compontents/about/aboutPage":241,"./compontents/app":242,"./compontents/authors/authorPage":245,"./compontents/authors/manageAuthorPage":246,"./compontents/homePage":249,"react":233,"react-router":61}],254:[function(require,module,exports){
 "use strict";
 
 var Dispatcher = require('../dispatcher/appDispatcher');
@@ -52322,13 +52345,19 @@ var AuthorStore = assign({}, EventEmitter.prototype,{
 
 Dispatcher.register(function(action){
     switch(action.actionType){
+        case ActionTypes.INITIALIZE:
+            _authors = action.initialData.authors;
+            AuthorStore.emitChange();
+            break;
         case ActionTypes.CREATE_AUTHOR:
             _authors.push(action.author);
             AuthorStore.emitChange();
-            
+            break;
+        default:
+            //console.log(action.actionType);
     }
 });
 
 module.exports = AuthorStore;
 
-},{"../constants/actionTypes":249,"../dispatcher/appDispatcher":250,"events":4,"lodash":27,"object-assign":28}]},{},[251]);
+},{"../constants/actionTypes":250,"../dispatcher/appDispatcher":251,"events":4,"lodash":27,"object-assign":28}]},{},[252]);
