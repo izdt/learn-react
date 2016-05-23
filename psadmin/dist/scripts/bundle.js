@@ -52036,6 +52036,7 @@ module.exports = AuthorForm;
 },{"../common/textInput":248,"react":233}],244:[function(require,module,exports){
 "use strict";
 var React = require('react');
+var Link = require('react-router').Link;
 
 var AuthorList = React.createClass({displayName: "AuthorList",
     propTypes:{
@@ -52045,7 +52046,7 @@ var AuthorList = React.createClass({displayName: "AuthorList",
         var createAuthorRow = function(author){
            return (
                React.createElement("tr", {key: author.id}, 
-                React.createElement("td", null, " ", React.createElement("a", {href: "/#authors/"+author.id}, author.id)), 
+                React.createElement("td", null, " ", React.createElement(Link, {to: {pathname:'author',query:{id:author.id}}}, author.id)), 
                 React.createElement("td", null, author.firstName, " ", author.LastName)
                )
            );  
@@ -52068,7 +52069,7 @@ var AuthorList = React.createClass({displayName: "AuthorList",
 
 module.exports = AuthorList;
 
-},{"react":233}],245:[function(require,module,exports){
+},{"react":233,"react-router":61}],245:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -52114,6 +52115,12 @@ var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
           author: {id:'',firstName:'',lastName:''},
           errors:{}
        };  
+    },
+    componentWillMount: function(){
+        var authorId = this.props.location.query.id;
+        if(authorId){
+           this.setState({author:AuthorStore.getAuthorById(authorId)});
+        }
     },
     setAuthorState: function(event){
        //console.log(event.target.name);
@@ -52304,6 +52311,7 @@ var routes = (
     React.createElement(IndexRoute, {component: require('./compontents/homePage')}), 
     React.createElement(Route, {path: "authors", component: require('./compontents/authors/authorPage')}), 
     React.createElement(Route, {path: "author", component: require('./compontents/authors/manageAuthorPage')}), 
+    React.createElement(Route, {path: "author/:authorId", component: require('./compontents/authors/manageAuthorPage')}), 
     React.createElement(Route, {path: "about", component: require('./compontents/about/aboutPage')})
   )
 );
@@ -52338,7 +52346,7 @@ var AuthorStore = assign({}, EventEmitter.prototype,{
    getAllAuthors:function(){
        return _authors;
    },
-   getAuthorById: function() {
+   getAuthorById: function(id) {
      return _.find(_authors, {id:id});   
    }
 });
