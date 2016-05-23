@@ -52046,7 +52046,7 @@ var AuthorList = React.createClass({displayName: "AuthorList",
         var createAuthorRow = function(author){
            return (
                React.createElement("tr", {key: author.id}, 
-                React.createElement("td", null, " ", React.createElement(Link, {to: {pathname:'author',query:{id:author.id}}}, author.id)), 
+                React.createElement("td", null, " ", React.createElement(Link, {to: 'author/'+author.id}, author.id)), 
                 React.createElement("td", null, author.firstName, " ", author.LastName)
                )
            );  
@@ -52117,7 +52117,7 @@ var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
        };  
     },
     componentWillMount: function(){
-        var authorId = this.props.location.query.id;
+        var authorId = this.props.params.id;
         if(authorId){
            this.setState({author:AuthorStore.getAuthorById(authorId)});
         }
@@ -52311,7 +52311,7 @@ var routes = (
     React.createElement(IndexRoute, {component: require('./compontents/homePage')}), 
     React.createElement(Route, {path: "authors", component: require('./compontents/authors/authorPage')}), 
     React.createElement(Route, {path: "author", component: require('./compontents/authors/manageAuthorPage')}), 
-    React.createElement(Route, {path: "author/:authorId", component: require('./compontents/authors/manageAuthorPage')}), 
+    React.createElement(Route, {path: "author/:id", component: require('./compontents/authors/manageAuthorPage')}), 
     React.createElement(Route, {path: "about", component: require('./compontents/about/aboutPage')})
   )
 );

@@ -10,7 +10,7 @@ var AuthorList = React.createClass({
         var createAuthorRow = function(author){
            return (
                <tr key={author.id}>
-                <td> <Link to={{pathname:'author',query:{id:author.id}}}>{author.id}</Link></td>
+                <td> <Link to={'author/'+author.id}>{author.id}</Link></td>
                 <td>{author.firstName} {author.LastName}</td>
                </tr>
            );  

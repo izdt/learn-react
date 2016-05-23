@@ -16,7 +16,7 @@ var ManageAuthorPage = React.createClass({
        };  
     },
     componentWillMount: function(){
-        var authorId = this.props.location.query.id;
+        var authorId = this.props.params.id;
         if(authorId){
            this.setState({author:AuthorStore.getAuthorById(authorId)});
         }
