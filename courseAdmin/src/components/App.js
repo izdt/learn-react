@@ -11,7 +11,7 @@ class App extends Component {
     }
 }
 
-App.protoTypes = {
+App.propTypes = {
     children: PropTypes.object.isRequired
 }
 
