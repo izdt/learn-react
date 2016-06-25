@@ -6,6 +6,7 @@ class HomePage extends Component {
             <div className="jumbotron">
                 <h1>Course Admin</h1>
                 <p>Reac, Redux and React Router in ES6</p>
+                
             </div>
         );
     }
