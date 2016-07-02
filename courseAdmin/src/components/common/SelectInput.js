@@ -9,14 +9,13 @@ const SelectInput = ({name,label,defaultOption,options,onChange,value,error}) =>
               onChange={onChange} className="form-control">
             <option value="">{defaultOption}</option>
             {options.map((option)=>{
-                return <option key={option.value}> value={option.value}>{option.kext}</option>;
+                return <option key={option.value} value={option.value}>{option.text}</option>;
             })}  
             </select>
             {error && <div className="alert alert-danger">{error}</div>}
          </div>
         </div>
     );
-
 };
 SelectInput.propTypes = {
     name: PropTypes.string.isRequired,
