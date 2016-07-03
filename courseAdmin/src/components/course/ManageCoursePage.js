@@ -37,7 +37,7 @@ function mapStateToProps(state, ownProps) {
 
     const authorsFormattedForDropdown = state.authors.map(author => {
         return {
-            vaules: author.id,
+            value: author.id,
             text: author.firstName + ' ' + author.lastName
         };
     });
