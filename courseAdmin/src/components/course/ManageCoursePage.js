@@ -7,6 +7,7 @@ import CourseForm from './CourseForm';
 class ManageCoursePage extends Component {
     constructor(props, context){
         super(props, context);
+
         this.state = {
             course: Object.assign({},this.props.course),
             errors:{}
@@ -14,6 +15,12 @@ class ManageCoursePage extends Component {
 
         this.updateCourseState = this.updateCourseState.bind(this);
         this.saveCourse = this.saveCourse.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(this.props.course.id != nextProps.course.id){
+            this.setState({course: Object.assign({}, nextProps.course)});
+        }
     }
 
     updateCourseState(event){
@@ -65,7 +72,7 @@ function mapStateToProps(state, ownProps) {
 
     let course = {id:'', watchHref:'', title:'',authorId:'',length:'',category:''};
 
-    if(courseId){
+    if(courseId && state.courses.length > 0){
         course = getCourseById(state.courses, courseId);
     }
 
