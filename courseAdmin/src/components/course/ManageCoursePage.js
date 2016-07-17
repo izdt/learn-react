@@ -29,8 +29,8 @@ export class ManageCoursePage extends Component {
         const field = event.target.name;
         let course = this.state.course;
         course[field] = event.target.value;
-        //todo: update errors when field change
-        return this.setState({course:course});
+        this.setState({course:course});
+        return this.courseFormIsValid();
     }
 
     courseFormIsValid(){
