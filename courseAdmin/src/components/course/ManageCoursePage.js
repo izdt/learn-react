@@ -2,6 +2,7 @@ import React, {Component,PropTypes} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as courseActions from '../../actions/courseActions';
+import {authorsFormattedForDropdown} from '../../modules/selector';
 import CourseForm from './CourseForm';
 import toastr from 'toastr';
 
@@ -107,16 +108,9 @@ function mapStateToProps(state, ownProps) {
         course = getCourseById(state.courses, courseId);
     }
 
-    const authorsFormattedForDropdown = state.authors.map(author => {
-        return {
-            value: author.id,
-            text: author.firstName + ' ' + author.lastName
-        };
-    });
-
     return {
         course: course,
-        authors: authorsFormattedForDropdown
+        authors: authorsFormattedForDropdown(state.authors)
     };
 }
 
