@@ -2,7 +2,7 @@ import {authorsFormattedForDropdown} from './selector';
 import expect from 'expect';
 
 describe('Author Selectors',()=>{
- 	describe('authorsFormattedForDropdown',()=>{
+    describe('authorsFormattedForDropdown',()=>{
          it('Should return author data formated',()=>{
              const authors = [
                 {id: 'cory-house', firstName: 'Cory', lastName: 'House'},

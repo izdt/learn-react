@@ -1,5 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
+import ExtractTextPlug from 'extract-text-webpack-plugin';
 
 const GLOBAL = {
   'process.env.NODE_ENV': JSON.stringify('production')
