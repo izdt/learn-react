@@ -4,9 +4,10 @@ import colors from 'colors';
 
 process.env.NODE_ENV = 'production';
 
-console.log('Generting minified bundle for production via Webpack');
+console.log('Generting minified bundle for production via Webpack'.blue);
 
 webpack(webpackConfig).run((err, stats) => {
+
     if(err){
         console.log(err.bold.red);
         return 1;
@@ -23,7 +24,7 @@ webpack(webpackConfig).run((err, stats) => {
         jsonStats.warnings.map(warning => console.log(warning.yellow));
     }
 
-    console.log(`Webpack stats:${stats}`);
+    console.log(`Webpack stats: ${stats}`);
 
     console.log('complied in production mode');
 
