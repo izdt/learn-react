@@ -1,6 +1,6 @@
 import express from 'express';
 import {MongoClient} from 'mongodb';
-import MongoConfig from 'db/mongodb.config'
+import MongoConfig from './db/mongodb.config'
 
 let app = express();
 
