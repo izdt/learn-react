@@ -5,7 +5,7 @@ class Hello extends Component {
     render() {
         return (
             <div>
-                Hello from React Hello Component
+                Hello from React Hello
             </div>
         );
     }
