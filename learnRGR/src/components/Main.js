@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 
 class Main extends Component {
+    componentDidMount(){
+        debugger
+    }
     render() {
         return (
             <div>
