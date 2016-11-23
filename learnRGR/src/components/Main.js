@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 
 class Main extends Component {
+    componentWillMount(){
+        debugger;
+    }
     componentDidMount(){
-        debugger
+        debugger;
     }
     render() {
         return (
