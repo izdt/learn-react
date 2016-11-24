@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
+import API from './API'
 
 class Main extends Component {
     componentWillMount(){
-        debugger;
+        API.fetchLinks();
     }
     componentDidMount(){
         debugger;
