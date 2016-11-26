@@ -1,6 +1,10 @@
+import {get} from 'jquery';
+
 const API = {
     fetchLinks() {
-        console.log("From API");
+        get('/data/links').done((res)=>{
+            console.log(res);
+        });
     }
 };
 export default API;
