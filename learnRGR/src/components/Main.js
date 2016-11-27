@@ -5,9 +5,6 @@ class Main extends Component {
     componentWillMount(){
         API.fetchLinks();
     }
-    componentDidMount(){
-        debugger;
-    }
     render() {
         return (
             <div>
