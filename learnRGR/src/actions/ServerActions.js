@@ -1,10 +1,10 @@
 import AppDispatcher from '../AppDispatcher';
-import {ActionType} from '../Constants';
+import {ActionTypes} from '../Constants';
 
 const ServerActions = {
-    recieveLinks(links){
+    receiveLinks(links){
         AppDispatcher.dispatch({
-            actionType: ActionType.RECEIVE_LINKS,
+            actionType: ActionTypes.RECEIVE_LINKS,
             links
         });
     }

@@ -1,10 +1,10 @@
 import {get} from 'jquery';
-import ServiceActions from './actions/ServiceActions';
+import ServerActions from './actions/ServerActions';
 
 const API = {
     fetchLinks() {
         get('/data/links').done((resp)=>{
-            ServiceActions.receiveLinks(resp);
+            ServerActions.receiveLinks(resp);
         });
     }
 };
