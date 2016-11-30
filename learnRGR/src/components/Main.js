@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import API from '../API'
+import API from '../API';
+import LinkStore from '../stores/LinkStore';
 
 class Main extends Component {
     componentWillMount(){
