@@ -1,10 +1,18 @@
 import express from 'express';
+import schema from './data/schema';
+import GraphQLHTTP from 'express-graphql';
+
 import {MongoClient} from 'mongodb';
 import MongoConfig from './db/mongodb.config'
 
 let app = express();
-
 app.use(express.static('public'));
+
+app.use('/graphql', GraphQLHTTP({
+    schema: schema,
+    rootValue: root,
+    graphiql: true
+}));
 
 let db;
 
