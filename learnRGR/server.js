@@ -8,17 +8,17 @@ import MongoConfig from './db/mongodb.config'
 let app = express();
 app.use(express.static('public'));
 
-app.use('/graphql', GraphQLHTTP({
-    schema: schema,
-    rootValue: root,
-    graphiql: true
-}));
-
 let db;
 
 MongoClient.connect(MongoConfig.connectString, (err, database)=>{
     if(err) throw err;
     db = database;
+
+    app.use('/graphql', GraphQLHTTP({
+        schema: schema(db),
+        graphiql: true
+    }));
+
     app.listen(3000,()=>console.log('Listening on port 3000...'));
 });
 
