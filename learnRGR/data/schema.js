@@ -22,7 +22,7 @@ let Schema = (db) => {
         query: new GraphQLObjectType({
             name: 'Query',
             fields: {
-                data:{
+                links:{
                     type: new GraphQLList(linkType),
                     resolve: () => db.collection("links").find({}).toArray()
                 }
