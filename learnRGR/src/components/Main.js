@@ -39,5 +39,8 @@ class Main extends Component {
     }
 }
 
+Main.propTypes = {
+    limit: React.PropTypes.number
+}
 
 export default Main;
