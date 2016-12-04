@@ -16,9 +16,10 @@ class Main extends Component {
         limit: 3
     }
 
+    state = _getAppState();
+
     constructor(prop){
         super(prop);
-        this.state = _getAppState();
         this.onChange = this.onChange.bind(this);
     }
     componentWillMount(){
@@ -47,6 +48,5 @@ class Main extends Component {
         );
     }
 }
-
 
 export default Main;
