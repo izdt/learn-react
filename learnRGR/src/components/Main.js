@@ -7,6 +7,15 @@ let _getAppState = () => {
 }
 
 class Main extends Component {
+    
+    static propTypes = {
+        limit: React.PropTypes.number
+    }
+
+    static defaultProps = {
+        limit: 3
+    }
+
     constructor(prop){
         super(prop);
         this.state = _getAppState();
@@ -39,12 +48,5 @@ class Main extends Component {
     }
 }
 
-Main.propTypes = {
-    limit: React.PropTypes.number
-}
-
-Main.defaultProps = {
-    limit: 3
-}
 
 export default Main;
