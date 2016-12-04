@@ -43,4 +43,8 @@ Main.propTypes = {
     limit: React.PropTypes.number
 }
 
+Main.defaultProps = {
+    limit: 3
+}
+
 export default Main;
