@@ -12,13 +12,15 @@
   "author": "iZDT",
   "license": "ISC",
   "dependencies": {
+    "babel-relay-plugin": "^0.9.3",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
     "flux": "^3.1.0",
     "graphql": "^0.8.2",
     "jquery": "^3.1.1",
     "react": "^15.4.0",
-    "react-dom": "^15.4.0"
+    "react-dom": "^15.4.0",
+    "react-relay": "^0.9.3"
   },
   "devDependencies": {
     "babel": "^6.5.2",
