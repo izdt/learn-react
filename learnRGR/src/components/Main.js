@@ -11,26 +11,22 @@ class Main extends Component {
     static propTypes = {
         limit: React.PropTypes.number
     }
-
     static defaultProps = {
         limit: 3
     }
 
     state = _getAppState();
 
-    constructor(prop){
-        super(prop);
-        this.onChange = this.onChange.bind(this);
+    onChange = ()=>{
+        this.setState(_getAppState());
     }
+    
     componentWillMount(){
         API.fetchLinks();
         LinkStore.on('change',this.onChange);
     }
     componentWillUnMount(){
         LinkStore.removeListener('change',this.onChange);
-    }
-    onChange(){
-        this.setState(_getAppState());
     }
     render() {
         let content = this.state.links.slice(0, this.props.limit ).map(link=>{
