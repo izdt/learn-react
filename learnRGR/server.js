@@ -1,7 +1,9 @@
+import fs from 'fs';
 import express from 'express';
-import schema from './data/schema';
+import Schema from './data/schema';
 import GraphQLHTTP from 'express-graphql';
-
+import {graphql} from 'graphql';
+import {introspectionQuery} from 'graphql/utilities';
 import {MongoClient} from 'mongodb';
 import MongoConfig from './db/mongodb.config'
 
@@ -10,12 +12,19 @@ app.use(express.static('public'));
 
 (async () => {
     let db = await MongoClient.connect(MongoConfig.connectString);
-     app.use('/graphql', GraphQLHTTP({
-        schema: schema(db),
+    let schema = Schema(db);
+    app.use('/graphql', GraphQLHTTP({
+        schema,
         graphiql: true
     }));
-  
+    
+    let json = await graphql(schema, introspectionQuery);
     app.listen(3000,()=>console.log('Listening on port 3000...'));  
+    fs.writeFile('./data/schema.json',JSON.stringify(json,null,2), err => {
+        if(err) throw err;
+        console.log("JSON schema created");
+    });
+
 })();
 
 /*
