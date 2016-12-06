@@ -18,13 +18,14 @@ app.use(express.static('public'));
         graphiql: true
     }));
     
-    let json = await graphql(schema, introspectionQuery);
     app.listen(3000,()=>console.log('Listening on port 3000...'));  
+    /*
+    let json = await graphql(schema, introspectionQuery);
     fs.writeFile('./data/schema.json',JSON.stringify(json,null,2), err => {
         if(err) throw err;
         console.log("JSON schema created");
     });
-
+    */
 })();
 
 /*

@@ -7,10 +7,10 @@ ReactDOM.render(<Main />,document.getElementById('app'));
 //export default Hello;
 
 console.log(
-    Relay.QL `
-    {
+    Relay.QL`
+    query Test {
         links {
-            titile
+            title
         }
     }
     `
