@@ -8,7 +8,16 @@ import {
 } from 'graphql';
 
 let Schema = (db) => {
-    let store = {};
+    let store =  {};
+
+    let linkType = new GraphQLObjectType({
+        name: 'Link',
+        fields: {
+            _id: {type: GraphQLString},
+            title: {type: GraphQLString},
+            url: {type: GraphQLString},
+        }
+    });
 
     let storeType = new GraphQLObjectType({
         name: 'Store',
@@ -20,20 +29,11 @@ let Schema = (db) => {
         }
     });
 
-    let linkType = new GraphQLObjectType({
-        name: 'Link',
-        fields: {
-            _id: {type: GraphQLString},
-            title: {type: GraphQLString},
-            url: {type: GraphQLString},
-        }
-    });
-
     let schema = new GraphQLSchema({
         query: new GraphQLObjectType({
             name: 'Query',
             fields: {
-                links:{
+                store:{
                     type: storeType,
                     resolve: () => store
                 }

@@ -52,7 +52,7 @@ class Main extends Component {
 Main = Relay.createContainer(Main, {
     framgments : {
         store: () => Relay.QL`
-            framgment on Store {
+            fragment on Store {
                 links {
                     _id,
                     title,
