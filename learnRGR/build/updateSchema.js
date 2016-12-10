@@ -10,7 +10,7 @@ import { introspectionQuery, printSchema } from 'graphql/utilities';
 (async () => {
   let db = await MongoClient.connect(MongoConfig.connectString);
   let schema = Schema(db);
-  var result = await (graphql(schema, introspectionQuery));
+  let result = await (graphql(schema, introspectionQuery));
   if (result.errors) {
     console.error(
       'ERROR introspecting schema: ',
