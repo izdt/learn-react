@@ -11,14 +11,14 @@ let _getAppState = () => {
 }
 */
 class Main extends Component {
-    
+    /*
     static propTypes = {
         limit: React.PropTypes.number
     }
     static defaultProps = {
         limit: 3
     }
-    /*
+
     state = _getAppState();
 
     onChange = ()=>{
@@ -35,7 +35,7 @@ class Main extends Component {
     */
     render() {
         //let content = this.state.links.slice(0, this.props.limit ).map(link=>{
-        let content = this.props.store.links.slice(0, this.props.limit ).map(link=>{
+        let content = this.props.store.links.map(link=>{
             return <Link key={link._id} link={link} />
         });
         return (

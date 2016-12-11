@@ -11,14 +11,18 @@ let app = express();
 app.use(express.static('public'));
 
 (async () => {
-    let db = await MongoClient.connect(MongoConfig.connectString);
-    let schema = Schema(db);
-    app.use('/graphql', GraphQLHTTP({
-        schema,
-        graphiql: true
-    }));
-    
-    app.listen(3000,()=>console.log('Listening on port 3000...'));  
+    try{
+        let db = await MongoClient.connect(MongoConfig.connectString);
+        let schema = Schema(db);
+        app.use('/graphql', GraphQLHTTP({
+            schema,
+            graphiql: true
+        }));
+        
+        app.listen(3000,()=>console.log('Listening on port 3000...'));  
+    }catch(e){
+        console.log(e);
+    }
     /*
     let json = await graphql(schema, introspectionQuery);
     fs.writeFile('./data/schema.json',JSON.stringify(json,null,2), err => {
